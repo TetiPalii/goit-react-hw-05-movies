@@ -10,6 +10,7 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   useEffect(() => {
     fetchMovieDetails(movieId).then(({ data }) => {
+      console.log(data);
       console.log(data.poster_path);
       setDetails({ ...data });
     });
