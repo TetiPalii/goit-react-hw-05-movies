@@ -15,10 +15,11 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} />
-        <Route path="movies" element={<Movies />}>
-          <Route path="movies/:id" elements={<MovieDetails />} />
+        <Route path="movies" element={<Movies />} />
+        <Route path="movies/:movieId" element={<MovieDetails />}>
           <Route path="cast" elements={<Cast />} />
           <Route path="reviews" elements={<Reviews />} />
+          <Route />
         </Route>
       </Route>
     </Routes>

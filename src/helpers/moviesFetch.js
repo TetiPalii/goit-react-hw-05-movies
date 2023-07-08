@@ -9,7 +9,7 @@ const movies = axios.create({
   },
 });
 
-async function fetchTrendingMovies() {
+export async function fetchTrendingMovies() {
   try {
     const response = await movies.get(`trending/movie/day?api_key=${API_KEY}
     `);
@@ -20,4 +20,13 @@ async function fetchTrendingMovies() {
   }
 }
 
-export default fetchTrendingMovies;
+export async function fetchMovieDetails(id) {
+  try {
+    const response = await movies.get(`movie/${id}?api_key=${API_KEY}
+    `);
+    return response;
+    // console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+}

@@ -1,5 +1,5 @@
 import MoviesList from 'components/MoviesList';
-import fetchTrendingMovies from 'helpers/moviesFetch';
+import { fetchTrendingMovies } from 'helpers/moviesFetch';
 import { useEffect, useState } from 'react';
 
 const Home = () => {
