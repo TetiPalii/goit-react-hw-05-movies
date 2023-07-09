@@ -1,4 +1,4 @@
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchMovieDetails } from '../helpers/moviesFetch';
 import { useEffect, useState } from 'react';
 const defaultImg =
@@ -8,20 +8,20 @@ const defaultImg =
 const MovieDetails = () => {
   const [movieData, setMovieData] = useState({});
   const location = useLocation();
+  // console.log(location.state.from);
+  const backLink = location.state?.from ?? '/';
   const { movieId } = useParams();
   useEffect(() => {
     if (!movieId) {
       return;
     }
     fetchMovieDetails(movieId).then(({ data }) => {
-      console.log(data);
-
       setMovieData({ ...data });
     });
   }, [movieId]);
   return (
     <main>
-      <Link to={location.state.from}>
+      <Link to={backLink}>
         <button type="button">Go back</button>
       </Link>
       <div>
@@ -44,6 +44,22 @@ const MovieDetails = () => {
             ? movieData.genres.map(genre => genre.name)
             : 'No information'}
         </p>
+      </div>
+      <div>
+        <p>Additional information</p>
+        <ul>
+          <li>
+            <Link to="cast" state={{ from: '/' }}>
+              Cast
+            </Link>
+          </li>
+          <li>
+            <Link to="reviews" state={{ from: '/' }}>
+              Reviews
+            </Link>
+          </li>
+        </ul>
+        <Outlet />
       </div>
     </main>
   );

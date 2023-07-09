@@ -1,6 +1,11 @@
-// API:7d14207d169f7b0a78fd4813f8c21637
+import SearchForm from '../components/SearchForm';
+
 const Movies = () => {
-  return <div>Movies</div>;
+  return (
+    <div>
+      <SearchForm />
+    </div>
+  );
 };
 
 export default Movies;

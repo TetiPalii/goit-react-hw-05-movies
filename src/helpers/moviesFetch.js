@@ -14,7 +14,6 @@ export async function fetchTrendingMovies() {
     const response = await movies.get(`trending/movie/day?api_key=${API_KEY}
     `);
     return response;
-    // console.log(response);
   } catch (error) {
     console.error(error);
   }
@@ -25,7 +24,26 @@ export async function fetchMovieDetails(id) {
     const response = await movies.get(`movie/${id}?api_key=${API_KEY}
     `);
     return response;
-    // console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function fetchMovieCast(id) {
+  try {
+    const response = await movies.get(`movie/${id}/credits?api_key=${API_KEY}
+    `);
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function fetchMovieReview(id) {
+  try {
+    const response = await movies.get(`movie/${id}/reviews?api_key=${API_KEY}
+    `);
+    return response;
   } catch (error) {
     console.error(error);
   }
