@@ -48,3 +48,14 @@ export async function fetchMovieReview(id) {
     console.error(error);
   }
 }
+//search/movie
+export async function searchMovie(query) {
+  try {
+    const response =
+      await movies.get(`search/movie?query=${query}&api_key=${API_KEY}
+    `);
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}

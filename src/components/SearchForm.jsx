@@ -1,24 +1,27 @@
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { GoSearch } from 'react-icons/go';
+import { Form } from './SearchForm.styled.jsx';
 
-const SearchForm = () => {
+const SearchForm = ({ handleSubmit }) => {
   const [query, setQuery] = useState('');
-  const [searchQuery, setsearchQuery] = useSearchParams();
-  console.log(searchQuery);
+
+  const onInput = ({ target }) => {
+    setQuery(target.value);
+  };
+  const onSubmit = e => {
+    e.preventDefault();
+    handleSubmit(query);
+  };
+
   return (
-    <form
-      onSubmit={e => {
-        e.preventDefault();
-        setsearchQuery({ query });
-      }}
-    >
-      <input
-        type="text"
-        value={query}
-        onChange={e => setQuery(e.target.value)}
-      />
-      <button>Search</button>
-    </form>
+    <Form onSubmit={onSubmit}>
+      <div>
+        <input type="text" value={query} onChange={onInput} />
+        <button type="submit">
+          <GoSearch />
+        </button>
+      </div>
+    </Form>
   );
 };
 export default SearchForm;

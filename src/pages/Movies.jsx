@@ -1,9 +1,35 @@
+import { useEffect, useState } from 'react';
 import SearchForm from '../components/SearchForm';
+import { searchMovie } from 'helpers/moviesFetch';
+// import { SearchMoviesList } from 'components/searchMoviesList';
+import MoviesList from 'components/MoviesList';
+import { useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
+  // const [searchQuery, setQuery] = useState('');
+
+  const [queryMovies, setQueryMovies] = useState([]);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // const query = searchParams.get('query') ?? '';
+
+  const handleSubmit = movieQuery => {
+    setSearchParams({ query: movieQuery });
+  };
+  const query = searchParams.get('query') ?? '';
+
+  useEffect(() => {
+    if (!query) {
+      return;
+    }
+    searchMovie(query).then(({ data: { results } }) => setQueryMovies(results));
+  }, [query]);
+
   return (
     <div>
-      <SearchForm />
+      <SearchForm handleSubmit={handleSubmit} />
+      <MoviesList movies={queryMovies} />
     </div>
   );
 };

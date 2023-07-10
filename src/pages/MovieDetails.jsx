@@ -1,16 +1,18 @@
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { fetchMovieDetails } from '../helpers/moviesFetch';
 import { useEffect, useState } from 'react';
+import { Main, IconBack, FilmContainer } from './MovieDetails.styled';
+
 const defaultImg =
   'https://www.weddingsbylomastravel.com/images/paquetes/default.jpg';
-// import { Outlet } from 'react-router-dom';
 
 const MovieDetails = () => {
   const [movieData, setMovieData] = useState({});
   const location = useLocation();
-  // console.log(location.state.from);
+
   const backLink = location.state?.from ?? '/';
   const { movieId } = useParams();
+
   useEffect(() => {
     if (!movieId) {
       return;
@@ -20,11 +22,11 @@ const MovieDetails = () => {
     });
   }, [movieId]);
   return (
-    <main>
+    <Main>
       <Link to={backLink}>
-        <button type="button">Go back</button>
+        <IconBack size="1.5em" color="black" />
       </Link>
-      <div>
+      <FilmContainer>
         <img
           src={
             movieData.poster_path
@@ -44,7 +46,7 @@ const MovieDetails = () => {
             ? movieData.genres.map(genre => genre.name)
             : 'No information'}
         </p>
-      </div>
+      </FilmContainer>
       <div>
         <p>Additional information</p>
         <ul>
@@ -61,7 +63,7 @@ const MovieDetails = () => {
         </ul>
         <Outlet />
       </div>
-    </main>
+    </Main>
   );
 };
 
