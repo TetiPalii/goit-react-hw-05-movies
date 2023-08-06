@@ -1,17 +1,38 @@
 import { useLocation } from 'react-router-dom';
-import { List, LinkStyled } from './MoviesList.styled';
+import {
+  List,
+  LinkStyled,
+  Title,
+  Item,
+  Image,
+  ImageContainer,
+  TitleContainer,
+} from './MoviesList.styled';
 
 const MoviesList = ({ movies }) => {
   const location = useLocation();
+  console.log(movies);
   return (
     <List>
       {movies.length > 0 &&
         movies.map(movie => (
-          <li key={movie.id}>
+          <Item key={movie.id}>
             <LinkStyled to={`/movies/${movie.id}`} state={{ from: location }}>
-              {movie.title}
+              <ImageContainer>
+                <Image
+                  src={
+                    movie.poster_path
+                      ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                      : `https://www.weddingsbylomastravel.com/images/paquetes/default.jpg`
+                  }
+                  alt=""
+                />
+              </ImageContainer>
+              <TitleContainer>
+                <Title> {movie.title}</Title>
+              </TitleContainer>
             </LinkStyled>
-          </li>
+          </Item>
         ))}
     </List>
   );
