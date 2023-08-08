@@ -1,7 +1,8 @@
-import MoviesList from 'components/MoviesList';
+import MoviesList from 'components/moviesList/MoviesList';
 import { fetchTrendingMovies } from 'helpers/moviesFetch';
 import { useEffect, useState } from 'react';
-import { Container, Heading } from 'pages/Home.styled';
+
+import { Section } from 'components/section/Section';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -10,10 +11,9 @@ const Home = () => {
     fetchTrendingMovies().then(({ data: { results } }) => setMovies(results));
   }, []);
   return (
-    <Container>
-      <Heading>Trending today</Heading>
+    <Section title={'Trending today'}>
       <MoviesList movies={movies} />
-    </Container>
+    </Section>
   );
 };
 

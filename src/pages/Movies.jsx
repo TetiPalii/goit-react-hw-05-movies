@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import SearchForm from '../components/SearchForm';
+import SearchForm from '../components/searchForm/SearchForm';
 import { searchMovie } from 'helpers/moviesFetch';
 // import { SearchMoviesList } from 'components/searchMoviesList';
-import MoviesList from 'components/MoviesList';
+import MoviesList from 'components/moviesList/MoviesList';
 import { useSearchParams } from 'react-router-dom';
 
 const Movies = () => {

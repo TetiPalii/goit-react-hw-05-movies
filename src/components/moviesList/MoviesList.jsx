@@ -5,7 +5,6 @@ import {
   Title,
   Item,
   Image,
-  ImageContainer,
   TitleContainer,
 } from './MoviesList.styled';
 
@@ -13,12 +12,12 @@ const MoviesList = ({ movies }) => {
   const location = useLocation();
   console.log(movies);
   return (
-    <List>
-      {movies.length > 0 &&
-        movies.map(movie => (
-          <Item key={movie.id}>
-            <LinkStyled to={`/movies/${movie.id}`} state={{ from: location }}>
-              <ImageContainer>
+    <div className="container">
+      <List>
+        {movies.length > 0 &&
+          movies.map(movie => (
+            <Item key={movie.id}>
+              <LinkStyled to={`/movies/${movie.id}`} state={{ from: location }}>
                 <Image
                   src={
                     movie.poster_path
@@ -27,14 +26,15 @@ const MoviesList = ({ movies }) => {
                   }
                   alt=""
                 />
-              </ImageContainer>
-              <TitleContainer>
-                <Title> {movie.title}</Title>
-              </TitleContainer>
-            </LinkStyled>
-          </Item>
-        ))}
-    </List>
+
+                <TitleContainer>
+                  <Title> {movie.title}</Title>
+                </TitleContainer>
+              </LinkStyled>
+            </Item>
+          ))}
+      </List>
+    </div>
   );
 };
 export default MoviesList;

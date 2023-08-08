@@ -24,7 +24,7 @@ const Reviews = () => {
           })}
         </ul>
       ) : (
-        <p>"We don`t have any review for this movie"</p>
+        <p>"We don`t have any reviews for this movie"</p>
       )}
     </div>
   );

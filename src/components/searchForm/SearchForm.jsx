@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { GoSearch } from 'react-icons/go';
 import { Form } from './SearchForm.styled.jsx';
+import { Input } from '@mui/joy';
 
 const SearchForm = ({ handleSubmit }) => {
   const [query, setQuery] = useState('');
@@ -15,12 +16,10 @@ const SearchForm = ({ handleSubmit }) => {
 
   return (
     <Form onSubmit={onSubmit}>
-      <div>
-        <input type="text" value={query} onChange={onInput} />
-        <button type="submit">
-          <GoSearch />
-        </button>
-      </div>
+      <Input type="text" value={query} onChange={onInput} />
+      <button type="submit">
+        <GoSearch />
+      </button>
     </Form>
   );
 };
