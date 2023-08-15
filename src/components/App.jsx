@@ -8,7 +8,7 @@ const Movies = lazy(() => import('../pages/Movies'));
 const MovieDetails = lazy(() =>
   import('../pages/movieDetailsPage/MovieDetails')
 );
-const Cast = lazy(() => import('./Cast'));
+const Cast = lazy(() => import('./cast/Cast'));
 const Reviews = lazy(() => import('./Reviews'));
 // const MoviesList = lazy(() => import('./MoviesList'));
 
